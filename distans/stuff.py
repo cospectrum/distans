@@ -2,7 +2,7 @@ import math
 
 from typing import Iterable
 
-from .lp_space import l2
+from .utils import dot, T
 
 
 __all__ = [
@@ -13,22 +13,20 @@ __all__ = [
 ]
 
 
-def _dot(a: Iterable, b: Iterable):
-    return sum(x * y for x, y in zip(a, b))
-
-
 def jaccard_sim(a: set, b: Iterable) -> float:
     intersection = a.intersection(b)
     union = a.union(b)
     return len(intersection) / len(union)
 
 
-def cos_sim(a: Iterable, b: Iterable):
-    return _dot(a, b) / (l2(a) * l2(b))
+def cos_sim(a: Iterable[T], b: Iterable[T]) -> T:
+    c = (dot(a, a) * dot(b, b)) ** 0.5
+    return dot(a, b) / c
 
 
 def angular_dist(a: Iterable[float], b: Iterable[float]) -> float:
-    cos: float = cos_sim(a, b)
+    cos = cos_sim(a, b)
+    cos = min(1.0, max(-1.0, cos))
     return math.acos(cos) / math.pi
 
 
