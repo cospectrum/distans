@@ -18,8 +18,9 @@ from distans import lp
 a = [1, -2, 3]
 b = [3, 4, -5]
 
-norm = lp(a, p=4)
-dist = lp(a, b, p=3)
+p = 4
+norm = lp(a, p=p)
+dist = lp(a, b, p=p)
 ```
 
 ### Edit similarity

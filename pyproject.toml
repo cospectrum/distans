@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "distans"
-version = "0.1.1"
+version = "0.1.3"
 repository = "https://github.com/cospectrum/distans"
 description = "Different distances for Python"
 authors = ["cospectrum <severinalexeyv@gmail.com>"]
