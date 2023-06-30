@@ -4,8 +4,9 @@ def test_readme():
     a = [1, -2, 3]
     b = [3, 4, -5]
 
-    norm = lp(a, p=4)
-    dist = lp(a, b, p=3)
+    p = 2
+    norm = lp(a, p=p)
+    dist = lp(a, b, p=p)
 
     from distans import jaro_sim, jaro_winkler_sim
 

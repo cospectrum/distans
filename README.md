@@ -18,7 +18,7 @@ from distans import lp
 a = [1, -2, 3]
 b = [3, 4, -5]
 
-p = 4
+p = 2
 norm = lp(a, p=p)
 dist = lp(a, b, p=p)
 ```
