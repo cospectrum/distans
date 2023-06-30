@@ -1,6 +1,6 @@
 import random
 
-from distans import jaro_sim, jaro_winkler_sim
+from distans import jaro_sim, jaro_winkler_sim, jaccard_sim
 
 
 rand_char = lambda: random.randint(0, 100)
@@ -17,7 +17,7 @@ def random_replace(seq: list) -> None:
     seq[i] = rand_char()
 
 
-def test_jaro_winkler() -> None:
+def test_sim() -> None:
     a_len = random.randint(2, 60)
     a = [rand_char() for _ in range(a_len)]
     b = [x for x in a]
@@ -33,3 +33,5 @@ def test_jaro_winkler() -> None:
     for fn in fns:
         sim = fn(a, b)  # type: ignore
         assert 0.0 <= sim <= 1.0
+
+    assert 0.0 <= jaccard_sim(set(a), b) <= 1.0
