@@ -2,7 +2,7 @@ import math
 
 from typing import Iterable
 
-from .utils import dot, T
+from .utils import T
 
 
 __all__ = [
@@ -20,8 +20,16 @@ def jaccard_sim(a: set, b: Iterable) -> float:
 
 
 def cos_sim(a: Iterable[T], b: Iterable[T]) -> T:
-    c = (dot(a, a) * dot(b, b)) ** 0.5
-    return dot(a, b) / c
+    it = zip(a, b)
+    x, y = next(it)
+    left = x * x
+    right = y * y
+    ab = x * y
+    for x, y in it:
+        left += x * x
+        right += y * y
+        ab += x * y
+    return ab / (left * right) ** 0.5
 
 
 def angular_dist(a: Iterable[float], b: Iterable[float]) -> float:
